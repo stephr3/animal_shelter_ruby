@@ -52,5 +52,32 @@ describe(Animal) do
       expect(Animal.sort_by_breed).to(eq([test_animal2,test_animal1]))
     end
   end
+  describe '.sort_by_type' do
+    it "returns a list of animals sorted by type" do
+      test_animal1 = Animal.new({:name => 'Boo', :entry_date => '2016-07-12', :gender => 'f', :type => 'fish', :breed => 'goldfish', :friend_id => 1})
+      test_animal1.save()
+      test_animal2 = Animal.new({:name => 'Caw', :entry_date => '2016-07-13', :gender => 'f', :type => 'bird', :breed => 'goldfinch', :friend_id => 1})
+      test_animal2.save()
+      expect(Animal.sort_by_type).to(eq([test_animal2,test_animal1]))
+    end
+  end
+  describe '.sort_by_name' do
+    it "returns a list of animals sorted by name" do
+      test_animal1 = Animal.new({:name => 'Boo', :entry_date => '2016-07-12', :gender => 'f', :type => 'fish', :breed => 'goldfish', :friend_id => 1})
+      test_animal1.save()
+      test_animal2 = Animal.new({:name => 'Caw', :entry_date => '2016-07-13', :gender => 'f', :type => 'bird', :breed => 'goldfinch', :friend_id => 1})
+      test_animal2.save()
+      expect(Animal.sort_by_name).to(eq([test_animal1,test_animal2]))
+    end
+  end
+  describe '.sort_by_entry_date' do
+    it "returns a list of animals sorted by entry date" do
+      test_animal1 = Animal.new({:name => 'Boo', :entry_date => '2016-07-12', :gender => 'f', :type => 'fish', :breed => 'goldfish', :friend_id => 1})
+      test_animal1.save()
+      test_animal2 = Animal.new({:name => 'Caw', :entry_date => '2016-07-13', :gender => 'f', :type => 'bird', :breed => 'goldfinch', :friend_id => 1})
+      test_animal2.save()
+      expect(Animal.sort_by_entry_date).to(eq([test_animal1,test_animal2]))
+    end
+  end
 
 end
