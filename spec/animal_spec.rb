@@ -18,7 +18,7 @@ describe(Animal) do
   end
 
   describe('.all') do
-    it "returns an empty array at first" do
+    it "returns an array of all animals" do
       test_animal1 = Animal.new({:name => 'Boo', :entry_date => '2016-07-12', :gender => 'f', :type => 'fish', :breed => 'goldfish', :friend_id => 1})
       test_animal1.save()
       test_animal2 = Animal.new({:name => 'Caw', :entry_date => '2016-07-13', :gender => 'f', :type => 'bird', :breed => 'goldfinch', :friend_id => 1})
