@@ -9,6 +9,14 @@ describe(Animal) do
     end
   end
 
+  describe('#id') do
+    it "returns the id of the animal" do
+    test_animal = Animal.new({:name => 'Boo', :entry_date => '2016-07-12', :gender => 'f', :type => 'fish', :breed => 'goldfish', :friend_id => 1})
+    test_animal.save()
+    expect(test_animal.id.class).to(eq(Fixnum))
+    end
+  end
+
   describe('.all') do
     it "returns an empty array at first" do
       test_animal1 = Animal.new({:name => 'Boo', :entry_date => '2016-07-12', :gender => 'f', :type => 'fish', :breed => 'goldfish', :friend_id => 1})

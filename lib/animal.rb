@@ -1,7 +1,8 @@
 class Animal
-  attr_reader(:name, :entry_date, :gender, :type, :breed, :friend_id)
+  attr_reader(:id, :name, :entry_date, :gender, :type, :breed, :friend_id)
 
   define_method (:initialize) do |attributes|
+    @id = attributes[:id]
     @name = attributes.fetch(:name)
     @entry_date = attributes.fetch(:entry_date)
     @gender = attributes.fetch(:gender)
@@ -18,35 +19,38 @@ class Animal
    end
 
   define_singleton_method (:all) do
-    returned_animals = DB.exec("SELECT name, cast(entry_date AS date), gender, type, breed, friend_id FROM animals;")
+    returned_animals = DB.exec("SELECT id, name, cast(entry_date AS date), gender, type, breed, friend_id FROM animals;")
     animals = []
     returned_animals.each() do |animal|
+      id = animal.fetch("id").to_i()
       name = animal.fetch('name')
       entry_date = animal.fetch('entry_date')
       gender = animal.fetch('gender')
       type = animal.fetch('type')
       breed = animal.fetch('breed')
       friend_id = animal.fetch('friend_id').to_i()
-      animals.push(Animal.new({:name => name, :entry_date => entry_date, :gender => gender, :type => type, :breed => breed, :friend_id => friend_id}))
+      animals.push(Animal.new({:id => id, :name => name, :entry_date => entry_date, :gender => gender, :type => type, :breed => breed, :friend_id => friend_id}))
     end
     animals
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO animals (name,entry_date,gender,type,breed,friend_id) VALUES ('#{@name}','#{@entry_date}','#{@gender}','#{@type}','#{@breed}',#{@friend_id});")
+    result = DB.exec("INSERT INTO animals (name,entry_date,gender,type,breed,friend_id) VALUES    ('#{@name}','#{@entry_date}','#{@gender}','#{@type}','#{@breed}',#{@friend_id}) RETURNING id;")
+    @id = result.first.fetch('id').to_i()
   end
 
   define_singleton_method(:sort_by_breed) do
     animals = []
-    returned_animals = DB.exec("SELECT name, cast(entry_date AS date), gender, type, breed, friend_id FROM animals ORDER BY breed ASC;")
+    returned_animals = DB.exec("SELECT id, name, cast(entry_date AS date), gender, type, breed, friend_id FROM animals ORDER BY breed ASC;")
     returned_animals.each() do |animal|
+      id = animal.fetch("id").to_i()
       name = animal.fetch("name")
       entry_date = animal.fetch("entry_date")
       gender = animal.fetch("gender")
       type = animal.fetch("type")
       breed = animal.fetch("breed")
-      friend_id = animal.fetch("friend_id")
-      animals.push(Animal.new({:name => name, :entry_date => entry_date, :gender => gender, :type => type, :breed => breed, :friend_id => friend_id}))
+      friend_id = animal.fetch("friend_id").to_i()
+      animals.push(Animal.new({:id => id, :name => name, :entry_date => entry_date, :gender => gender, :type => type, :breed => breed, :friend_id => friend_id}))
     end
     animals
   end
