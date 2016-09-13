@@ -6,45 +6,6 @@ _an Epicodus Project, July 2016_
 ## Description
 Animal Shelter page! Adopt, add animal names, breeds and types. Add customers, and match animals to customers' favorite breeds! Indicate who adopted whom!
 
-## Specifications
-
-#### _T._
-
-  User input:
-   *
-   *
-
-  Website displays:
-   *
-   *
-
-#### _A user can add a word to the main list, which will save to the webpage._
-
-  User input:
-   *
-   *
-
-  Website displays:
-   *
-   *
-
-#### _When a user views word definitions, she or he is able to submit custom definitions which will save to the webpage._
-
-  User input:
-   *
-   *
-
-  Website displays:
-   *
-   *
-
-
-## See it Now at Heroku
-
-_This web app is available at:_
-
-
-
 ### Support and contact details
 
 _Contact alexd (dot) jacks (at) gmail (dot) com with questions regarding this software. Check out some of these resources to understand the technologies._
